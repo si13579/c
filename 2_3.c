@@ -2,13 +2,13 @@
  * @Date: 2020-08-02 06:37:13
  */ 
 #include<stdio.h>
-int strb(int s[]);
+int strb(char s[]);
 int main()
 {
-    int s[] = {5,6,7};
+    char s[] = "warinning";
     strb(s);
 }
-int strb(int s[])
+int strb(char s[])
 {
     int i;
     i = 0;
