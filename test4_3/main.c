@@ -1,12 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "push_pop.h"
-#include "getop.h"
+#include "calc.h"
 #define MAXOP   100
-#define NUMBER  '0'
-int getop(char []);
-void push(double);
-double pop(void);
 main()
 {
     int type;
@@ -15,7 +10,7 @@ main()
     while ((type = getop(s)) != EOF){
         switch ( type){
             case NUMBER:
-                push(atof(s));
+                 push(atof(s));
                 break;
             case '+':
                 push(pop() + pop());

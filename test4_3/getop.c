@@ -1,9 +1,6 @@
 #include<stdio.h>
 #include<ctype.h>
-#include "get_ungetch.h"
-#define NUMBER '0'
-int getch(void);
-void ungetch(int);
+#include "calc.h"
 int getop(char s[])
 {
     int i,c;
