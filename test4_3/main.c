@@ -16,7 +16,7 @@ main()
                 push(pop() + pop());
                 break;
             case '*':
-                push(pop() + pop());
+                push(pop() * pop());
                 break;
             case '-':
                 op2 = pop();
