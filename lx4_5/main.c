@@ -1,8 +1,10 @@
 #include<stdio.h>
+#include<string.h>
 #include<math.h>
 #include<stdlib.h>
 #include "calc.h"
 #define MAXOP   100
+void mathfnc(char s[]);
 main()
 {
     int type;
@@ -12,6 +14,9 @@ main()
         switch ( type){
             case NUMBER:
                  push(atof(s));
+                break;
+            case NAME:
+                mathfnc(s);
                 break;
             case '+':
                 push(pop() + pop());
@@ -65,4 +70,25 @@ main()
         }
     }
     return 0;
+}
+//mathfnc:check string a for supported math functions
+void mathfnc(char s[])
+{
+    double op2;
+    if (strcmp(s, "sin") == 0)
+        push(sin(pop()));
+    else if (strcmp(s, "cos") == 0)
+        push(cos(pop()));
+    else if (strcmp(s, "exp") == 0)
+        push(exp(pop()));
+    else if (strcmp(s,"pow") == 0){
+        op2 = pop();
+        push(pow(pop(),op2));
+    }
+    else
+    {
+        printf("error: %s not supported\n", s);
+    }
+    
+    
 }
