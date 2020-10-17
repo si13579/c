@@ -53,5 +53,6 @@
         "cmath": "c",
         "cstdlib": "c",
         "*.tcc": "c"
-    }
+    },
+    "code-runner.runInTerminal": true
 }

@@ -1,28 +1,18 @@
-
-#include<stdio.h>`
-#include<ctype.h>
+#include<stdio.h>
 #define BUFSIZE 100
+#define SIZE 10
 char buf[BUFSIZE];
 int bufp = 0;
+int n,array[SIZE]; 
 int getch(void){
     return (bufp > 0 ) ? buf[--bufp] : getchar();
 }
 void ungetch(int c){
-    if ( bufp >= BUFSIZE)
+    if ( bufp >= BUFSIZE) 
         printf("ungetch: too many characters\n");
     else
         buf[bufp++] = c;
 }
-int SIZE ;
-SIZE = 10;
-int n,array[SIZE],getint(int *);
-int main()  
-{
-for (n = 0; n < SIZE && getint(&array[n]) != EOF; n++)
-    ;
-
-}
-
 int getint(int *pn)
 {
     int c,sign;
@@ -32,7 +22,7 @@ int getint(int *pn)
         ungetch(c);
         return 0;
     }
-    sign = ( c == '-1') ? -1 : 1;
+    sign = ( c == '-') ? -1 : 1;
     if ( c == '+' || c == '-')
         c = getch();
     for ( *pn = 0; isdigit(c); c = getch())
@@ -41,4 +31,10 @@ int getint(int *pn)
     if (c != EOF)
         ungetch(c);
     return 0;
+}
+int main()
+{
+    for (n = 0; n < SIZE && getint(&array[n]) != EOF;n++)
+        ;
+    printf("%d",array[1]);
 }
