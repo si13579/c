@@ -41,4 +41,3 @@ int getint(int *pn)
     if (c != EOF)
         ungetch(c);
     return 0;
-}
