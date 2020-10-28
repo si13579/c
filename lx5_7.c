@@ -1,15 +1,18 @@
 #include<stdio.h>
 #include<string.h>
 #define MAXLINES 5000  //进行排序的最大文本行数
+#define MAXSTOR 5000
+char linestor[MAXSTOR];
 char *lineptr[MAXLINES]; //指向文本行的指针数组
-int readlines(char *lineptr[], int nlines);
+//int readlines(char *lineptr[], int nlines);
+int readlines(char *lineptr[],char *linestor,int maxlines);
 void writelines(char *lineptr[],int nlines);
 void qsort(char *lineptr[],int left,int right);
 //对输入的文本行进行排序
 main()
 {
     int nlines; //读取的输入行数目
-    if ((nlines = readlines(lineptr,MAXLINES)) >= 0){
+    if ((nlines = readlines(lineptr,linestor,MAXLINES)) >= 0){
         qsort(lineptr,0,nlines-1);
         writelines(lineptr,nlines);
         return 0;
@@ -32,7 +35,26 @@ int getliness(char *s,int lim)
     *s = '\0';
     return s - t;
 }
+int readlines(char *lineptr[],char *linestor,int maxlines)
+{
+    int len,nlines;
+    char line[MAXLEN];
+    char *p = linestor;
+    char *linestop = linestor + MAXSTOR;
+    nlines = 0;
+    while ((len = getliness(line,MAXLEN)) > 0)
+        if (nlines >= maxlines || p+len > linestop)
+            return -1;
+        else {
+            line[len-1] = '\0';
+            strcpy(p,line);
+            lineptr[nlines++] = p;
+            p += len;
+        }
+    return nlines;
+}
 
+/*
 char line[MAXLEN];
 char *alloc(int n)
 {
@@ -61,6 +83,7 @@ int readlines(char *lineptr[],int maxlines)
         }
     return nlines;
 }
+*/
 
 //writelines函数：写输出行
 /*
